@@ -1,8 +1,9 @@
-const HelloWorld = (property) => {
+const HelloWorld = ({title,subTitle,age}) => {
     return (
     <header>
-      <h1> Wellcome, {property.title} </h1>
-      <h4>{property.subTitle} </h4>
+      <h1> {title} </h1>
+      <h4>{subTitle} </h4>
+      <h3>your age is {age}</h3>
     </header>
     );
   };
