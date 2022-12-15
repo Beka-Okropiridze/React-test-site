@@ -1,14 +1,19 @@
 import './App.css';
 
-import HelloWorld from './HelloWorld';
-import Welcome from './Welcome';
+
+import {Home} from './pages/home'
+
+import {Headeri} from './components/header/Header'
+import { Footer } from './components/footer';
+
+
 
 function App() {
   return (
-    <div className="App">
-      <HelloWorld title="Test message" subTitle="subtitle" age={30} />
-      <HelloWorld title="Test message 2" subTitle="subtitle" age={50} />
-      <Welcome user="James Bond" />
+    <div className="App container">
+      <Headeri/>
+      <Home />
+      <Footer />
     </div>
   );
 }

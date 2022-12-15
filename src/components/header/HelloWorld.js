@@ -1,9 +1,8 @@
-const HelloWorld = ({title,subTitle,age}) => {
+const HelloWorld = ({title,subTitle}) => {
     return (
     <header>
-      <h1> {title} </h1>
       <h4>{subTitle} </h4>
-      <h3>your age is {age}</h3>
+      <h3>your age is {title}</h3>
     </header>
     );
   };
