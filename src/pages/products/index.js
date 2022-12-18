@@ -1,0 +1,1 @@
+export { renderProducts } from "./products";

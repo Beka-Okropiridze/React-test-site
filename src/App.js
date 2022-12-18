@@ -1,7 +1,8 @@
 import './App.css';
 
 
-import {Home} from './pages/home'
+// import {Home} from './pages/home'
+import { renderProducts } from './pages/products/products';
 
 import {Headeri} from './components/header/Header'
 import { Footer } from './components/footer';
@@ -12,7 +13,8 @@ function App() {
   return (
     <div className="App container">
       <Headeri/>
-      <Home />
+      <renderProducts />
+      {/* <Home /> */}
       <Footer />
     </div>
   );
