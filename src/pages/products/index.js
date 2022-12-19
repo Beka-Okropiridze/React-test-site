@@ -1,1 +1,1 @@
-export { renderProducts } from "./products";
+export { RenderProducts } from "./products";

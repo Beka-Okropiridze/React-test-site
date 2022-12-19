@@ -2,19 +2,19 @@
     {
         "category": "ხილი",
         "name": "ვაშლი",
-        "price": "1",
-        "stock": "true"
+        "price": 1,
+        "stock": true
     },
     {
         "category": "ბოსტნეული",
         "name": "პომიდორი",
-        "price": "3",
-        "stock": "true"  
+        "price": 3,
+        "stock": true  
     },
     {
         "category": "ბოსტნეული",
         "name": "კომბოსტო",
-        "price": "2",
-        "stock": "false" 
+        "price": 2,
+        "stock": false 
     }
 ]
