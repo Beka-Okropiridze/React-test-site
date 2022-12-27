@@ -6,17 +6,18 @@ import { RenderProducts } from './pages/products';
 
 import {Headeri} from './components/header/Header'
 import { Footer } from './components/footer';
+import { Layout } from './components/layout/layout';
 
 
 
 function App() {
   return (
-    <div className="App container">
+    <Layout className="App">
       <Headeri/>
       <RenderProducts />
       {/* <Home /> */}
       <Footer />
-    </div>
+    </Layout>
   );
 }
 

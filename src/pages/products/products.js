@@ -2,10 +2,13 @@
 import { useState } from 'react';
 import productsData from '../../products.json';
 
-import { Button, TextInput } from '../../atoms';
+import debounce from 'lodash/debounce';
+
+import { Button, TextInput, Forma } from '../../atoms';
 // import { TextInput } from '../../atoms';
 
 import { ProductItem } from './productitems';
+import { Collapseable } from '../../components/collapseabale';
 
 export const RenderProducts = () => {
 
@@ -17,9 +20,14 @@ export const RenderProducts = () => {
     const dasabechdiProducts = () => {
         let data = productsData.slice();
         if ( inStockOnly ) {
-            data = productsData.filter((item) => item.stock);
+            data = data.filter((item) => item.stock);
             console.log(data);
         }
+
+        if(filterTerm && filterTerm.length > 2 ) {      //რახან ცარიელი სტრინგი აღიქმება ფოლსად filterTermსაც ვამოწმებ
+            data = data.filter( (el) => el.name.includes(filterTerm) ); //რახან filter აბრუნებს მასივს დატას დუბლირებაslice აღარ უნდა
+        }  
+
         return   data.map((item, index) => {
             return <ProductItem product={item} key={index} />;
         });
@@ -29,26 +37,29 @@ export const RenderProducts = () => {
     return (
         <div className="row shadow my-3 p-3">
             <h3>Productss</h3>
-            <form>
+            <Forma>
                 <div className='mb-3 row'>
-                <h4> Filter - {filterTerm}</h4>
+                    {/* <h4> Filter - {filterTerm}</h4> */}
                     <div className='col-8'>
                         <TextInput 
                             value={filterTerm}
                             onChange={({target}) => {
                                 setFilterTerm(target.value)
                             }}
+                            placeholder='ძიება...'
                         />
                     </div>
                     <div className='col-4'>
-                        <Button className="btn btn-outline-primary" onClick={() => setInStockOnly(!inStockOnly)} 
-                                 text={inStockOnly ? "ყველა პროდუქტი" : "მარაგში მყოფი პროდუქტი"} 
-                        />
+                        <Button className="btn btn-outline-primary" onClick={() => setInStockOnly(!inStockOnly)}>
+                                 {/* text=   */} {inStockOnly ? "😒ყველა პროდუქტი*" : "მარაგში მყოფი პროდუქტი"}
+                       </Button>
                     </div>    
                 </div>
-            </form>
+            </Forma>
             <hr />
+            <Collapseable closedtitle='მაჩვენე პროდუქცია' openedtitle='დამალე პროდუქცია'>
             {dasabechdiProducts()}
+            </Collapseable>
         </div>
     );
 };
