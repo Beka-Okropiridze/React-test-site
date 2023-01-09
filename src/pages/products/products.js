@@ -51,14 +51,16 @@ export const RenderProducts = () => {
                     </div>
                     <div className='col-4'>
                         <Button className="btn btn-outline-primary" onClick={() => setInStockOnly(!inStockOnly)}>
-                                 {/* text=   */} {inStockOnly ? "😒ყველა პროდუქტი*" : "მარაგში მყოფი პროდუქტი"}
+                                 {/* text=   */} {inStockOnly ? "😒ყველა პროდუქტი*" : "👌მარაგში მყოფი პროდუქტი"}
                        </Button>
                     </div>    
                 </div>
             </Forma>
             <hr />
-            <Collapseable closedtitle='მაჩვენე პროდუქცია' openedtitle='დამალე პროდუქცია'>
+            <Collapseable closedtitle='მაჩვენე პროდუქცია' openedtitle='დამალე პროდუქცია' className='App'>
+            <div className='d-flex flex-wrap justify-content-center'>
             {dasabechdiProducts()}
+            </div>
             </Collapseable>
         </div>
     );

@@ -3,18 +3,43 @@
         "category": "ხილი",
         "name": "ვაშლი",
         "price": 1,
-        "stock": true
+        "stock": true,
+        "id": 1
     },
     {
         "category": "ბოსტნეული",
         "name": "პომიდორი",
         "price": 3,
-        "stock": true  
+        "stock": true,
+        "id": 2
+    },
+    {
+        "category": "ბოსტნეული",
+        "name": "კიტრი",
+        "price": 3.2,
+        "stock": true,
+        "id": 3
+    },
+    {
+        "category": "ბოსტნეული",
+        "name": "ხახვი",
+        "price": 5,
+        "stock": false,
+        "id": 4
+
+    },
+    {
+        "category": "ბოსტნეული",
+        "name": "პომიდორი",
+        "price": 3,
+        "stock": true,
+        "id": 5  
     },
     {
         "category": "ბოსტნეული",
         "name": "კომბოსტო",
         "price": 2,
-        "stock": false 
+        "stock": false,
+        "id": 6
     }
 ]

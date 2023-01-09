@@ -8,16 +8,20 @@ import {Headeri} from './components/header/Header'
 import { Footer } from './components/footer';
 import { Layout } from './components/layout/layout';
 
+import { CartProvider } from './providers/CartProvider/CartProvider';
+
 
 
 function App() {
   return (
-    <Layout className="App">
-      <Headeri/>
-      <RenderProducts />
-      {/* <Home /> */}
-      <Footer />
-    </Layout>
+    <CartProvider>
+        <Layout className="App">
+            <Headeri/>
+            <RenderProducts />
+            {/* <Home /> */}
+            <Footer />
+        </Layout>
+    </CartProvider>
   );
 }
 
