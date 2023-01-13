@@ -1,7 +1,7 @@
 
 export const TextInput = ({ value, onChange, placeholder='' }) => {
     const id = Math.random().toString();
-    console.log(id);
+    // console.log(id);
     return (
     <div className="input-group mb-3">
     <span className="input-group-text" id={id}>

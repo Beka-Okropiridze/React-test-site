@@ -16,7 +16,7 @@ export const ProductItem = ({ product }) => {
                 <h6>
                     {product.stock ? "მარაგშია" : "არ არის მარაგში"}, კატეგორია - {product.category}
                 </h6>
-                <Button className="btn btn-outline-success" onClick={()=> addNewItem(product.price)}>
+                <Button className="btn btn-outline-success" onClick={()=> addNewItem(product)}>
                     Add to Card🛒
                 </Button>
             </div>
