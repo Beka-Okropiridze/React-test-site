@@ -20,26 +20,56 @@ export const CartProvider = ({ children }) => {
             let newItem;
             if (prev.items[product.id]) {    //თუ აითემებში პროდუქტის აიდი არსებობს მაშინ პროდუქტის რაოდენობა გაიზარდოს ერთით
                 const cartProduct = prev.items[product.id]; //აითემებში ანუ კალათაში!
-                newItem = {
+                newItem = {                      //items-ში მაქ განახლებული total და newItem ობიექტი რომელ ობიექტშიც price და qty-ია 
                     ...cartProduct,
                     qty: cartProduct.qty + 1,
+                } 
+            } else {
+                newItem = {
+                price: product.price,
+                qty: 1
                 }
             }
 
             return {
                 ...prev,
                 total: prev.total + product.price,
-            };
+                items: {
+                    ...prev.items,
+                    [product.id]: newItem, // addNewItem რომ products იღებს იმ პროდუქტის აიდის გასწვრივ მექნება ობიექტი newItem
+                }                          // რომელშიც მექნება დინამიურად (ყოველ კლიკზე კალათაში დამატებაზე) დათვლილი 
+            };                            // price: 2 ან რამე ფასი და qty: 1 an რამე რაოდენობა
         });
     };
 
-    const removeItem = (item) => {
-        // setCart((prev) => {
-        //     return {
-        //         ...prev,
-        //         total: prev.total - value,
-        //     };
-        // });
+    const removeItem = (product) => {
+        setCart((prev) => {
+            let newItem = { ...prev.items }; //თუ პროდუქტი არაა newItem-ს მაინც რომ ქონდეს განსაზღვრული მნიშვნელობა სთეითი რო არ
+            let total = prev.total;
+            console.log('kk', total);
+            if (prev.items[product.id]) {                          // გაგვიფუჭდეს მაგიტომ
+                const cartProduct = prev.items[product.id];
+            if (cartProduct.qty > 1) {
+                newItem = {
+                    ...prev.items,
+                    [product.id]: {
+                        ...cartProduct,
+                        qty: cartProduct.qty - 1,
+                    },
+                };
+            total -= product.price;
+            } else {
+              total -= product.price
+              delete newItem[product.id]
+            }
+        }
+
+            return {
+                ...prev,
+                total,
+                items: newItem,
+            };
+        });
     }
 
     return <CartContext.Provider value={{
