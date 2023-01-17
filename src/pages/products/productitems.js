@@ -1,8 +1,8 @@
 
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { CartContext } from '../../providers/CartProvider';
 
-import { Button } from '../../atoms';
+import { Alert, Button } from '../../atoms';
 import './Productitem.css'
 
 export const ProductItem = ({ product }) => {
@@ -12,8 +12,19 @@ export const ProductItem = ({ product }) => {
                 items: cartItems
              },
         } = useContext(CartContext);
+
+        const [outofStock, setOutofStock] = useState (false)
         
         const isInCart = product.id in cartItems;
+
+        const handleAddtoCart = () => {
+            if (product.stock) {
+                addNewItem(product)
+            }
+            else {
+                setOutofStock(true)
+            }
+        }
         
     return (
         <div className="card mb-2 productitem-card">
@@ -21,12 +32,15 @@ export const ProductItem = ({ product }) => {
                 {product.name}, ღირებულება - ${product.price}
             </h4>
             <div className="card-body">
+            <div className='d-flex flex-column'>
+            { outofStock && <Alert message='დამატება შეუძლებელია' /> }
                 <h6>
-                    {product.stock ? "მარაგშია" : "არ არის მარაგში"}, კატეგორია - {product.category}
+                {product.stock ? "მარაგშია" : "არ არის მარაგში"}, კატეგორია - {product.category}
                 </h6>
-                <h6 className='text-muted'>{ isInCart ? `კალათაში: ${cartItems[product.id].qty}ც` : `არ არის კალათაში` }</h6>
+            </div>
+                <h6 className='text-muted'>{ isInCart ? `კალათაში: ${cartItems[product.id].qty}ც` : `არ არის კალათაში` };</h6>
             <div className='btn-group'>
-                <Button className="btn btn-outline-success" onClick={()=> addNewItem(product)}>
+                <Button className="btn btn-outline-success" onClick={handleAddtoCart}>
                     Add to Card🛒
                 </Button>
                 <Button className="btn btn-outline-danger" onClick={()=> removeItem(product)} disabled={!isInCart}>
