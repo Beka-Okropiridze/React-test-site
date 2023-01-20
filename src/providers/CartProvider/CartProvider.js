@@ -18,8 +18,8 @@ export const CartProvider = ({ children }) => {
         setCart((prev) => {
             // console.log('--blook--', prev);
             let newItem;
-            if (prev.items[product.id]) {    //თუ აითემებში პროდუქტის აიდი არსებობს მაშინ პროდუქტის რაოდენობა გაიზარდოს ერთით
-                const cartProduct = prev.items[product.id]; //აითემებში ანუ კალათაში!
+            if (prev.items[product.id]) {    //თუ აითემებში პროდუქტის აიდი არსებობს (პროდუქტი დამიმატებია) მაშინ პროდუქტის 
+                const cartProduct = prev.items[product.id]; //რაოდენობა გაიზარდოს ერთით (აითემებში ანუ კალათაში)!
                 newItem = {                      //items-ში მაქ განახლებული total და newItem ობიექტი რომელ ობიექტშიც price და qty-ია 
                     ...cartProduct,
                     qty: cartProduct.qty + 1,
@@ -37,7 +37,7 @@ export const CartProvider = ({ children }) => {
                 items: {
                     ...prev.items,
                     [product.id]: newItem, // addNewItem რომ products იღებს იმ პროდუქტის აიდის გასწვრივ მექნება ობიექტი newItem
-                }                          // რომელშიც მექნება დინამიურად (ყოველ კლიკზე კალათაში დამატებაზე) დათვლილი 
+                }                          // რომელშიც მექნება დინამიურად (ყოველ კლიკზე კალათაში დამატებაზე) დათვლილი თვისება
             };                            // price: 2 ან რამე ფასი და qty: 1 an რამე რაოდენობა
         });
     };
@@ -45,9 +45,9 @@ export const CartProvider = ({ children }) => {
     const removeItem = (product) => {
         setCart((prev) => {
             let newItem = { ...prev.items }; //თუ პროდუქტი არაა newItem-ს მაინც რომ ქონდეს განსაზღვრული მნიშვნელობა სთეითი რო არ
-            let total = prev.total;
+            let total = prev.total;          // გაგვიფუჭდეს მაგიტომ
             console.log('kk', total);
-            if (prev.items[product.id]) {                          // გაგვიფუჭდეს მაგიტომ
+            if (prev.items[product.id]) {                          
                 const cartProduct = prev.items[product.id];
             if (cartProduct.qty > 1) {
                 newItem = {

@@ -9,14 +9,14 @@ export const ProductItem = ({ product }) => {
     const {addNewItem,
            removeItem,
            cart: {
-                items: cartItems
-             },
+                items: cartItems               //items სახელს ვუცვლი cartItems-ით რო ლოგიკური სახელი ერქვას თორე იგივეს აბრუნებს
+             },                                //რასაც აითემსი
         } = useContext(CartContext);
 
         const [outofStock, setOutofStock] = useState (false)
         
         const isInCart = product.id in cartItems;
-
+        
         const handleAddtoCart = () => {
             if (product.stock) {
                 addNewItem(product)
@@ -25,7 +25,7 @@ export const ProductItem = ({ product }) => {
                 setOutofStock(true)
             }
         }
-        
+ 
     return (
         <div className="card mb-2 productitem-card">
             <h4 className="card-header">
