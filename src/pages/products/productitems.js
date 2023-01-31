@@ -10,7 +10,7 @@ export const ProductItem = ({ product }) => {
            removeItem,
            cart: {
                 items: cartItems               //items სახელს ვუცვლი cartItems-ით რო ლოგიკური სახელი ერქვას თორე იგივეს აბრუნებს
-             },                                //რასაც აითემსი
+             },                                //რასაც აითემსი`
         } = useContext(CartContext);
 
         const [outofStock, setOutofStock] = useState (false)
@@ -28,9 +28,9 @@ export const ProductItem = ({ product }) => {
  
     return (
         <div className="card mb-2 productitem-card">
-            <h4 className="card-header">
+            <h5 className="card-header">
                 {product.name}, ღირებულება - ${product.price}
-            </h4>
+            </h5>
             <div className="card-body">
             <div className='d-flex flex-column'>
             { outofStock && <Alert message='დამატება შეუძლებელია' /> }

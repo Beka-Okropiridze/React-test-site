@@ -1,5 +1,5 @@
 
-export const TextInput = ({ value, onChange, placeholder='' }) => {
+export const TextInput = ({ value, onChange, placeholder }) => {
     const id = Math.random().toString();
     // console.log(id);
     return (
