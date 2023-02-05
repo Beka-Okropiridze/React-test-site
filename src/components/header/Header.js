@@ -29,7 +29,7 @@ export const Headeri = () => {
               </li>
 
               <li className="nav-item">
-                <Link className='nav-link' to='/cart'>
+                <Link className='nav-link' to='/shopping-cart'>
                   <span className='font-weight-bold'>CART TOTAL</span>:
                   <span>{cart.total === 0 ? 'Empty' : `💰${Math.round(cart.total)}`}</span>
                 </Link>
