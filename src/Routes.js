@@ -3,7 +3,7 @@ import {Routes, Route} from 'react-router-dom';
 
 import { NoMatch } from './pages/NoMatch';
 import { ShoppingCart } from './pages/shoppingCart/shoppingCart';
-import {Home} from './pages/home'
+import {Home} from './pages/home';
 import { RenderProducts } from './pages/products';
 
 export const AllRoutes = () => {

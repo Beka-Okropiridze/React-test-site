@@ -1,11 +1,11 @@
 
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { ProductTable } from "../../components/table/ProductTable";
 
 
 
 export const ShoppingCart = () => {
-    const [value, setValue] = useState();
+    
 
     // useEffect(() => {
     //     console.log('shopping-cart');
@@ -30,7 +30,6 @@ export const ShoppingCart = () => {
         console.log('Ajax Request, Started');
         const timerId = setTimeout(() => {
             console.log('Ajax Request, Finished');
-            setValue(Math.random())
         }, 3000);
         return () => {
             clearTimeout(timerId);
@@ -40,7 +39,7 @@ export const ShoppingCart = () => {
 
     return (
         <div className="row">
-            <h2 onClick={() => setValue(Math.random())}>Shopping Cart 🛒</h2>
+            <h2>Shopping Cart 🛒</h2>
             <div className="col-12">
                 <ProductTable  />
             </div>
