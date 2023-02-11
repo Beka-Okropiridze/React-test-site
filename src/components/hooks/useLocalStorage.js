@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from "react";
 
 export const useLocalStorage = ( key, initialvalue ) => {
 
@@ -8,7 +8,7 @@ export const useLocalStorage = ( key, initialvalue ) => {
         }; 
         try {
             const value = window.localStorage.getItem(key);
-            return value ?? initialvalue;                       //null-იშ ოპერატორი ქვია ორი კითხვის ნიშანი
+            return value ? JSON.parse(value) : initialvalue;                       //null-იშ ოპერატორი ქვია ორი კითხვის ნიშანი
         }
         catch(error) {                             //try-ში წერ სარისკო კოდს თუ რამე არასწორად წავიდა გადადის catch-ში
             console.log('useLocalStorage--useState', error);
@@ -21,7 +21,7 @@ export const useLocalStorage = ( key, initialvalue ) => {
             const valueToStore = newValue instanceof Function ? newValue(storedValue) : newValue;
             setStoredValue(valueToStore)
             if(typeof window !== 'undefined') {
-                window.localStorage.setItem(key,valueToStore)
+                window.localStorage.setItem(key, JSON.stringify(valueToStore))
             }
         }
         catch (error) {

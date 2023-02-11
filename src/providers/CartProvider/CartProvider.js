@@ -1,5 +1,6 @@
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext } from "react"; //useState იყო და useLocalS-ში გავახვიე რომელიც ჩემი დაწერილი ჰუკია.
+import { useLocalStorage } from "../../components/hooks/useLocalStorage";
 
 export const CartContext = createContext({
     total: 0,
@@ -9,8 +10,8 @@ CartContext.displayName = 'CartContextProvider';
 
 export const CartProvider = ({ children }) => {
 
-    const [cart, setCart] = useState({
-        total: 0,
+    const [cart, setCart] = useLocalStorage('shopping-cart',{     //ანარეკლია useState ჰუკის-localStorage-ში. useLocalStorage-თავის
+        total: 0,                                               // ფუნქციაში იყენებს useStates 
         items: {},
     });
 

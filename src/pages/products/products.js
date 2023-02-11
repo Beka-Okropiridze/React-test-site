@@ -5,7 +5,7 @@ import productsData from '../../products.json';
 // import debounce from 'lodash/debounce';
 
 import { Button, TextInput, Forma } from '../../atoms';
-// import { TextInput } from '../../atoms';
+import { useLocalStorage } from '../../components/hooks/useLocalStorage';
 
 import { ProductItem } from './productitems';
 import { Collapseable } from '../../components/collapseabale';
@@ -14,7 +14,8 @@ export const RenderProducts = () => {
 
     const [inStockOnly, setInStockOnly] = useState(false);
 
-    const [filterTerm, setFilterTerm] = useState('');
+    const [filterTerm, setFilterTerm] = useLocalStorage('filter-term', ''); //useState ჰუკია ანარეკლით uselocalStorage-ში(ჩემ ჰუკში)
+
 
 
     const dasabechdiProducts = () => {
@@ -32,6 +33,7 @@ export const RenderProducts = () => {
             return <ProductItem product={item} key={index} />;
         });
     };
+
 
 
     return (
