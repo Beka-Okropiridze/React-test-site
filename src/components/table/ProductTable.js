@@ -1,24 +1,5 @@
 import { useCart } from "../../providers/CartProvider/CartProvider";
-import { Button } from '../../atoms/Buttons/button';
-
-
-export const ProductTableRowtr = ({ product, productId, onCartAdd, onCartRemove }) => {
-  return (
-    <tr>
-      <th scope="row">{productId}</th>
-      <td>{product.name}</td>
-      <td>{product.price}</td>
-      <td>რაოდენობა - {product.qty}, სულ {Math.round(product.price * product.qty)}</td>
-      <td>
-        <div className="btn-group">
-          <Button className='btn btn-outline-success' text='➕' onClick={onCartAdd} />
-          <Button className='btn btn-outline-warning' text='➖' onClick={onCartRemove} />
-        </div>
-      </td>
-    </tr>
-  )
-}
-
+import { ProductTableRowtr } from "./productTableRow";
 
 
 export const ProductTable = () => {
@@ -43,7 +24,7 @@ export const ProductTable = () => {
         ...item,
         id: productId
       }
-      return <ProductTableRowtr key={`product - ${productId}`} product={item} productId={productId}
+      return <ProductTableRowtr key={`product - ${productId}`} product={item} productId={+productId} //numberად აკეთებს პლიუსი სტრინგს
         onCartAdd={() => addNewItem(currentItem)}
         onCartRemove={() => removeItem(currentItem)} />
     })

@@ -1,9 +1,12 @@
 
-import { useContext, useState } from 'react';
-import { CartContext } from '../../providers/CartProvider';
+import {  useState } from 'react';
+// import { useContext } from 'react'; //useContext(CartContxet) ჩავანაცვლე useCart-ით ვნახო Cartprovider-iბოლოში რაც მიწერია
+// import { CartContext } from '../../providers/CartProvider';
+import { useCart } from '../../providers/CartProvider';
 
 import { Alert, Button } from '../../atoms';
-import './Productitem.css'
+import './Productitem.css';
+import PropTypes from 'prop-types';
 
 export const ProductItem = ({ product }) => {
     const {addNewItem,
@@ -11,7 +14,7 @@ export const ProductItem = ({ product }) => {
            cart: {
                 items: cartItems               //items სახელს ვუცვლი cartItems-ით რო ლოგიკური სახელი ერქვას თორე იგივეს აბრუნებს
              },                                //რასაც აითემსი`
-        } = useContext(CartContext);
+        } = useCart();
 
         const [outofStock, setOutofStock] = useState (false)
         
@@ -51,3 +54,7 @@ export const ProductItem = ({ product }) => {
         </div>
     );
 };
+
+ProductItem.propTypes = {
+    product: PropTypes.object.isRequired
+}; 
