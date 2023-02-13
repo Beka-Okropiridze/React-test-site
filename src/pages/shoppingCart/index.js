@@ -1,2 +1,2 @@
  
- export { ShoppingCart } from './shoppingCart'
+ export { ShoppingCart, ShoppingCart as default } from './shoppingCart'

@@ -1,1 +1,1 @@
-export { RenderProducts } from "./products";
+export { RenderProducts, RenderProducts as default } from "./products";

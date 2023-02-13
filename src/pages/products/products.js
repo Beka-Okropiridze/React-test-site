@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import productsData from '../../products.json';
 
 // import debounce from 'lodash/debounce';
@@ -9,6 +9,7 @@ import { useLocalStorage } from '../../components/hooks/useLocalStorage';
 
 import { ProductItem } from './productitems';
 import { Collapseable } from '../../components/collapseabale';
+import { useDebounce } from '../../components/hooks';
 
 export const RenderProducts = () => {
 
@@ -16,25 +17,38 @@ export const RenderProducts = () => {
 
     const [filterTerm, setFilterTerm] = useLocalStorage('filter-term', ''); //useState ჰუკია ანარეკლით uselocalStorage-ში(ჩემ ჰუკში)
 
+    const [result, setResult] = useState([]);
+
+    const pousedSearch = useDebounce(filterTerm, 500)
+
+    useEffect(() => {
+        if( pousedSearch ) {
+            const data = productsData.filter( (el) => el.name.includes(pousedSearch) );
+
+        // if(pousedSearch && pousedSearch.length > 2 ) {      //რახან ცარიელი სტრინგი აღიქმება ფოლსად filterTermსაც ვამოწმებ
+        //     data = data.filter( (el) => el.name.includes(pousedSearch) ); //რახან filter აბრუნებს მასივს დატას დუბლირებაslice აღარ უნდა
+        // }
+        setResult(data)
+        } else {
+            setResult(productsData.slice())
+        }
+    },[pousedSearch]) 
+
 
 
     const dasabechdiProducts = () => {
-        let data = productsData.slice();
+
+        let data = result.slice();
+
         if ( inStockOnly ) {
-            data = data.filter((item) => item.stock);
+            data = result.filter((item) => item.stock);
             console.log(data);
         }
-
-        if(filterTerm && filterTerm.length > 2 ) {      //რახან ცარიელი სტრინგი აღიქმება ფოლსად filterTermსაც ვამოწმებ
-            data = data.filter( (el) => el.name.includes(filterTerm) ); //რახან filter აბრუნებს მასივს დატას დუბლირებაslice აღარ უნდა
-        }  
-
+          
         return   data.map((item, index) => {
             return <ProductItem product={item} key={index} />;
         });
     };
-
-
 
     return (
         <div className="row shadow my-3 p-3">

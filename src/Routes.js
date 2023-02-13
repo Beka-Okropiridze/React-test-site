@@ -1,10 +1,14 @@
 
 import {Routes, Route} from 'react-router-dom';
+import { lazy, Suspense } from 'react';
 
 import { NoMatch } from './pages/NoMatch';
-import { ShoppingCart } from './pages/shoppingCart/shoppingCart';
 import {Home} from './pages/home';
-import { RenderProducts } from './pages/products';
+import { Loader } from './atoms';
+// import { ShoppingCart } from './pages/shoppingCart/shoppingCart';
+const ShoppingCart = lazy(() => import('./pages/shoppingCart'))
+// import { RenderProducts } from './pages/products';
+const RenderProducts = lazy(() => import('./pages/products'))
 
 export const AllRoutes = () => {
     return (
@@ -14,8 +18,16 @@ export const AllRoutes = () => {
             }}>
            <Routes>
               <Route path='/' index element={<Home />} />
-              <Route path='/products' index element={<RenderProducts />} /> 
-              <Route path='/shopping-cart' element={<ShoppingCart />}/>
+              <Route path='/products' index element={
+                <Suspense fallback={ <Loader message='Products Loading...' />}>
+                    <RenderProducts />
+                </Suspense>
+              } /> 
+              <Route path='/shopping-cart' element={
+                <Suspense fallback={<Loader message='Shopping-cart Loading' />}>
+                    <ShoppingCart />
+                </Suspense>
+              }/>
 
               {/* route მუშაობს დამთხვევების პრინციპით თუ ზემოთ არაფერი დაემთხვა მაშინ ჩამოდის ქვემოთ რა წერია მაგაზე, * ნიშნავს
                   რომ ყველაფერი მაინტერესებს  */}
