@@ -17,9 +17,9 @@ export const RenderProducts = () => {
 
     const [filterTerm, setFilterTerm] = useLocalStorage('filter-term', ''); //useState ჰუკია ანარეკლით uselocalStorage-ში(ჩემ ჰუკში)
 
-    const [result, setResult] = useState([]);
+    const [result, setResult] = useState(productsData.slice());
 
-    const pousedSearch = useDebounce(filterTerm, 500)
+    const pousedSearch = useDebounce(filterTerm, 500);
 
     useEffect(() => {
         if( pousedSearch ) {

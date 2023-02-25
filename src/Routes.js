@@ -2,38 +2,44 @@
 import {Routes, Route} from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 
+import {Login} from './pages/login';
+import {Register} from './pages/register';
+
 import { NoMatch } from './pages/NoMatch';
 import {Home} from './pages/home';
 import { Loader } from './atoms';
+import { Layout } from './components/layout/layout';
+
+import * as routes from './utils/routePaths';
+
 // import { ShoppingCart } from './pages/shoppingCart/shoppingCart';
 const ShoppingCart = lazy(() => import('./pages/shoppingCart'))
 // import { RenderProducts } from './pages/products';
 const RenderProducts = lazy(() => import('./pages/products'))
 
+
 export const AllRoutes = () => {
     return (
-        <div className='my-3' 
-            style={{
-                minHeight: '300px'
-            }}>
            <Routes>
-              <Route path='/' index element={<Home />} />
-              <Route path='/products' index element={
-                <Suspense fallback={ <Loader message='Products Loading...' />}>
-                    <RenderProducts />
-                </Suspense>
-              } /> 
-              <Route path='/shopping-cart' element={
-                <Suspense fallback={<Loader message='Shopping-cart Loading' />}>
-                    <ShoppingCart />
-                </Suspense>
-              }/>
-
-              {/* route მუშაობს დამთხვევების პრინციპით თუ ზემოთ არაფერი დაემთხვა მაშინ ჩამოდის ქვემოთ რა წერია მაგაზე, * ნიშნავს
-                  რომ ყველაფერი მაინტერესებს  */}
-              <Route path='*' element={ <NoMatch /> } />
+              <Route element={<Layout />}>
+                <Route path={routes.HOME_PATH} index element={<Home />} />
+                <Route path={routes.PRODUCTS_PATH} element={
+                    <Suspense fallback={ <Loader message='Products Loading...' />}>
+                        <RenderProducts />
+                    </Suspense>
+                } /> 
+                <Route path={routes.SHOPPING_CART_PATH} element={
+                    <Suspense fallback={<Loader message='Shopping-cart Loading' />}>
+                        <ShoppingCart />
+                    </Suspense>
+                }/>
+                <Route path={routes.LOGIN_PATH} element={<Login />} />
+                <Route path={routes.REGISTER_PATH} element={<Register />} />
+                {/* route მუშაობს დამთხვევების პრინციპით თუ ზემოთ არაფერი დაემთხვა მაშინ ჩამოდის ქვემოთ რა წერია მაგაზე, * ნიშნავს
+                    რომ ყველაფერი მაინტერესებს  */}
+                <Route path={routes.NO_MATCH_PATH} element={ <NoMatch /> } />
+              </Route>
             </Routes>
-        </div>
     )
 }
 AllRoutes.displayName = 'AppRoutes';
