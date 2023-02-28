@@ -3,5 +3,5 @@ export const HOME_PATH = '/';
 export const PRODUCTS_PATH = `${HOME_PATH}products`;
 export const SHOPPING_CART_PATH = `${HOME_PATH}shopping-cart`;
 export const LOGIN_PATH = `${HOME_PATH}login`;
-export const REGISTER_PATH = `${HOME_PATH}/register`;
+export const REGISTER_PATH = `${HOME_PATH}register`;
 export const NO_MATCH_PATH = '*';

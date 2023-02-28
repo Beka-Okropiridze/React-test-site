@@ -1,12 +1,14 @@
 
 import { useEffect } from "react"
+import { Loader } from "../../atoms";
+import { useRequireAuth } from "../../components/hooks";
 import { ProductTable } from "../../components/table/ProductTable";
 
 
 
 export const ShoppingCart = () => {
     
-
+    const auth = useRequireAuth()
     // useEffect(() => {
     //     console.log('shopping-cart');
     // }) განმარტება 21-1 ჩემ რეაქტის დოქში
@@ -36,6 +38,10 @@ export const ShoppingCart = () => {
         }
     }, []);
 
+
+    if (!auth) {
+        return <Loader />
+    }
 
     return (
         <div className="row">
