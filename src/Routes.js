@@ -21,7 +21,7 @@ const RenderProducts = lazy(() => import('./pages/products'))
 export const AllRoutes = () => {
     return (
            <Routes>
-              <Route element={<Layout />}>
+              <Route element={<Layout />}>{/*ეს როუტი ქვედა როუტების მშობელია მაგიტომ არ აქვს path. როუტინგის ახალი ფუნქციონალია */}                                                
                 <Route path={routes.HOME_PATH} index element={<Home />} />
                 <Route path={routes.PRODUCTS_PATH} element={
                     <Suspense fallback={ <Loader message='Products Loading...' />}>
