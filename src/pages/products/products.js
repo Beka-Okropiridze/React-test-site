@@ -19,12 +19,11 @@ export const RenderProducts = () => {
 
     const [result, setResult] = useState(productsData.slice());
 
-    const pousedSearch = useDebounce(filterTerm, 500);
+    const pousedSearch = useDebounce(filterTerm, 900);
 
     useEffect(() => {
         if( pousedSearch ) {
             const data = productsData.filter( (el) => el.name.includes(pousedSearch) );
-
         // if(pousedSearch && pousedSearch.length > 2 ) {      //რახან ცარიელი სტრინგი აღიქმება ფოლსად filterTermსაც ვამოწმებ
         //     data = data.filter( (el) => el.name.includes(pousedSearch) ); //რახან filter აბრუნებს მასივს დატას დუბლირებაslice აღარ უნდა
         // }
@@ -42,7 +41,7 @@ export const RenderProducts = () => {
 
         if ( inStockOnly ) {
             data = result.filter((item) => item.stock);
-            console.log(data);
+            // console.log('ინსტ',data);
         }
           
         return   data.map((item, index) => {
