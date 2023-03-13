@@ -8,7 +8,8 @@ import { ProductTable } from "../../components/table/ProductTable";
 
 export const ShoppingCart = () => {
     
-    const auth = useRequireAuth()
+    const auth = useRequireAuth();
+    console.log('auth', auth); 
     // useEffect(() => {
     //     console.log('shopping-cart');
     // }) განმარტება 21-1 ჩემ რეაქტის დოქში
