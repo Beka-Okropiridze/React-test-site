@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react"; //localStorage-ში უნდა შევინახო ტოკენ
 import { useLocalStorage } from "../../components/hooks/useLocalStorage";
-import { loginAsync } from "../../api/auth.service";
+import { loginAsync, registerAsync } from "../../api/auth.service";
 import { useNavigate } from "react-router-dom";
 import { HOME_PATH, LOGIN_PATH } from "../../utils";
 
@@ -22,7 +22,18 @@ export const AuthProvider = ({ children }) => {
             setUser(false)
          }  
     };
-    const register = async (credentials) => {};
+    const register = async (credentials) => {
+        const newUser = await registerAsync(credentials);
+        console.log('newUser', newUser);
+
+        if (newUser && newUser.token) {
+            setUser(true)
+            navigate(HOME_PATH)
+         } else {
+            setUser(false)
+         }
+    };
+
     const logout = () => {
         setUser(false)
         navigate(LOGIN_PATH)

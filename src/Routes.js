@@ -4,7 +4,7 @@ import { lazy, Suspense } from 'react';
 
 import {Login} from './pages/login';
 import {Register} from './pages/register';
-import { Profile } from './pages/profile';
+import  Profile  from './pages/profile'; //ესე იმპორტი იმიტომ წერია რომ withAuthProtection-ში მაქ იქით გახვეული Profile-კომპონენტი
 import { NoMatch } from './pages/NoMatch';
 import {Home} from './pages/home';
 import { Loader } from './atoms';
@@ -33,7 +33,7 @@ export const AllRoutes = () => {
                         <ShoppingCart />
                     </Suspense>
                 }/>
-                <Route path={routes.PROFILE_PATH} element={<Profile />} />
+                <Route path={routes.PROFILE_PATH} element={<Profile title='Page TitleP' />} />
                 <Route path={routes.LOGIN_PATH} element={<Login />} />
                 <Route path={routes.REGISTER_PATH} element={<Register />} />
                 {/* route მუშაობს დამთხვევების პრინციპით თუ ზემოთ არაფერი დაემთხვა მაშინ ჩამოდის ქვემოთ რა წერია მაგაზე, * ნიშნავს

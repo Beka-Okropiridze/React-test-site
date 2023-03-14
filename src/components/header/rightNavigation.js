@@ -2,10 +2,12 @@ import { NavLink } from "react-router-dom";
 import { useAuthProvider } from "../../providers/authProvider/authProvider";
 import {LOGIN_PATH, REGISTER_PATH, PROFILE_PATH} from '../../utils';
 import { Button } from "../../atoms";
+import { useCart } from '../../providers/CartProvider';
 
 export const RightNavigation = () => {
 
     const {user, logout} = useAuthProvider();
+    const { resetBucket } = useCart();
 
     const renderGuestNavLink = () => {
 
@@ -34,7 +36,10 @@ export const RightNavigation = () => {
                     </NavLink>
                 </li>
                 <li className="nav-item">
-                    <Button className='btn btn-link nav-link' onClick={logout}>Log Out</Button>
+                    <Button className='btn btn-link nav-link' onClick={() => { 
+                        logout()
+                        resetBucket() 
+                    }}>Log Out</Button>
                 </li>
             </>
         )
