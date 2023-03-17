@@ -1,5 +1,5 @@
 import  axios from "axios";
-import { API_BASE_URL } from "./config";
+import  { API_BASE_URL }  from "./config";
 
 axios.defaults.baseURL = API_BASE_URL;    //როცა axios დავწერთ '/login' რომ მიწერია წინ დაუწერს Api_B_URL-ს. ეს ჩანაწერი გვიმარტიწვებს
                                           //  ყოველ ჯერზე რომ(`${API_BASE_URL}/login`) არ ვწეროთ
