@@ -4,13 +4,13 @@
 
 import { memo } from "react";
 
-const ProfilechildComponent = () => {
-    console.log('--Child-Component-rendering', );
-    const fs = Math.round(Math.random() * 40) + 10;
+const ProfilechildComponent = ({ params, onClick }) => {
+    console.log('--Child-Component-rendering', params);
     return(
         <h4 style={{
-            fontSize: fs
-        }}>Child component</h4>
+            color: params.color 
+        }}>
+            Child component</h4>
     )
 };
 
