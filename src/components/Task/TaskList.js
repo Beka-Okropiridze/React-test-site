@@ -8,16 +8,17 @@ export const TaskList = ({ tasks, onTaskRemove, onTaskUpdate }) => {
             <ul className="list-group p-2">
                 
                 {
-                    tasks.map(() => {
+                    tasks.map((task) => {
                         return (
-                            <li className="list-group-item d-flex align-items-center justify-content-between">
+                            <li className="list-group-item d-flex align-items-center justify-content-between" 
+                                key={task.id} >
                                 <div>
                                     <input type='checkbox' className="checkbox" />
-                                    <span>Test Name</span>
+                                    <span> {task.text} </span>
                                 </div>
                                 <div>
                                     <Button className='btn btn-outline-secondary'>Edit</Button>
-                                    <Button className='btn btn-outline-danger'>Remove</Button>
+                                    <Button className='btn btn-outline-danger' onClick={() => onTaskRemove(task.id)}>Remove</Button>
                                 </div>
                             </li>
                         )
