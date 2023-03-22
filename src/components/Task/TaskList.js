@@ -3,6 +3,7 @@ import { Button } from "../../atoms/Buttons";
 
 
 export const TaskList = ({ tasks, onTaskRemove, onTaskUpdate }) => {
+    console.log('__TaskLists__', tasks);
     return (
         <div className="row">
             <ul className="list-group p-2">
@@ -12,8 +13,16 @@ export const TaskList = ({ tasks, onTaskRemove, onTaskUpdate }) => {
                         return (
                             <li className="list-group-item d-flex align-items-center justify-content-between" 
                                 key={task.id} >
-                                <div>
-                                    <input type='checkbox' className="checkbox" />
+                                <div> 
+{/* checkbox-ს აქვს თვისება checked რომელიც გადაეცემა onChange-ზე event.target.checked. მონიშნულია თუ არა true da false-s აბრუნებს */}
+                                    <input type='checkbox' className="checkbox"
+                                    checked={task.done}
+                                    onChange={event => {
+                                        onTaskUpdate({
+                                            ...task,
+                                            done: event.target.checked
+                                        })
+                                    }} />  
                                     <span> {task.text} </span>
                                 </div>
                                 <div>
@@ -24,7 +33,6 @@ export const TaskList = ({ tasks, onTaskRemove, onTaskUpdate }) => {
                         )
                     })
                 }
-
             </ul>
         </div>
     )
