@@ -12,11 +12,12 @@ const ACTION_TASK_CREATED = 'ACTION_TASK_CREATED';
 const ACTION_TASK_UPDATED = 'ACTION_TASK_UPDATED';
 const ACTION_TASK_REMOVED = 'ACTION_TASK_REMOVED';
 
-function reducer(state, action) {                                               //reducer-i აგენერირებს ყოველთვის ახალ სთეითს(მასივს)
+function reducer(state, action) {     
+    // console.log('s', action);                                          //reducer-i აგენერირებს ყოველთვის ახალ სთეითს(მასივს)
     switch(action.type) {
         case ACTION_TASK_REMOVED:
-            return state.filter((t) => t.id !== action.payload.taskId);
-
+            return state.filter((t) => t.id !== action.payload.taskId); //dispatchidan მოვედი case-ში და filter-ით დავაგენერირე ახალი
+                                             //მასივი რომელშიც t.id არ ემთხვევა payload.taskId-ის. ანუ წავშალე იმ აიდის მქონე ობიექტი
         case ACTION_TASK_CREATED:
             return [...state, action.payload.task];
 
