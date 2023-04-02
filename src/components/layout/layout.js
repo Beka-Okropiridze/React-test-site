@@ -1,6 +1,5 @@
 
 import { Headeri } from '../header/Header';
-import { Footer } from '../footer/footer';
 import { Outlet } from 'react-router-dom'; //reactis ფიქსირებული კომპონენტია რომელშიც იხატება ის კომპონენტი რომელსაც უმთხვევ მისამართს
 
 const sizes = {
@@ -18,6 +17,5 @@ export const Layout = ({ className, size = 'default' }) => {
         <div className='my-3' style={OutletStyles}>
             <Outlet />
         </div>
-        <Footer />
     </div>
 };
